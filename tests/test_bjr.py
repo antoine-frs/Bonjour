@@ -56,8 +56,8 @@ def test_donner_indice_correct(capfd: pytest.CaptureFixture) -> None:
 
 
 @patch("builtins.input", side_effect=["10", "20"])
-@patch("jeu_devinette.generer_nombre_aleatoire", return_value=15)
-@patch("jeu_devinette.donner_indice")
+@patch("bonjour.Projet.generer_nombre_aleatoire", return_value=15)
+@patch("bonjour.Projet.donner_indice")
 def test_jouer_partie(
     mock_donner_indice: MagicMock,
     mock_generer_nombre_aleatoire: MagicMock,
@@ -76,7 +76,7 @@ def test_demander_si_rejouer_oui(mock_input: MagicMock) -> None:
 
 
 @patch("builtins.input", side_effect=["o", "n"])
-@patch("jeu_devinette.jouer_partie")
+@patch("bonjour.Projet.jouer_partie")
 def test_jeu_devinette(mock_jouer_partie: MagicMock, mock_input: MagicMock) -> None:
     with patch("builtins.print") as mock_print:
         jeu_devinette()
