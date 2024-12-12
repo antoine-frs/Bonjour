@@ -3,7 +3,7 @@ requires-python = ">=3.11"
 name = "Bonjour"
 description = "Projet5A"
 authors = [
-    { name = 'Antoine' },
+    { name = 'Antoine FERRIERES Jennyfer BONNEAU' },
 ]
 version = "0.1.0"
 dependencies = [
