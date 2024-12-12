@@ -1,0 +1,90 @@
+  
+import numpy as np
+import random
+
+
+def afficher_message_bienvenue():
+    """
+    Affiche un message de bienvenue et les règles du jeu.
+    """
+    print("Essayez de deviner un nombre aléatoire entre 1 et 20 en un minimum d'essais.")
+    print("Bonne chance!\n")
+
+
+def generer_nombre_aleatoire():
+    """
+    Génère un nombre aléatoire entre 1 et 20.
+    """
+    return random.randint(1, 20)
+
+
+def obtenir_deviner_utilisateur():
+    """
+    Demande à l'utilisateur de saisir un nombre entre 1 et 20 et le valide.
+    """
+    while True:
+        try:
+            devinette = int(input("Entrez votre devinette (un nombre entre 1 et 20): "))
+            if 1 <= devinette <= 20:
+                return devinette
+            else:
+                print("Le nombre doit être entre 1 et 20. Essayez encore.")
+        except ValueError:
+            print("Ce n'est pas un nombre valide. Essayez encore.")
+
+
+def donner_indice(devinette, nombre_cible):
+    """
+    Fournit un indice sur la devinette : trop bas, trop haut ou correct.
+    """
+    if devinette < nombre_cible:
+        print("Trop bas, essayez un nombre plus grand.")
+    elif devinette > nombre_cible:
+        print("Trop haut, essayez un nombre plus petit.")
+    else:
+        print("Félicitations!")
+
+
+def jouer_partie():
+    """
+    Exécute une partie du jeu, où l'utilisateur essaie de deviner le nombre.
+    """
+    nombre_cible = generer_nombre_aleatoire()
+    devinette = None
+    essais = 0
+    
+    while devinette != nombre_cible:
+        devinette = obtenir_deviner_utilisateur()
+        donner_indice(devinette, nombre_cible)
+        essais += 1
+
+    print(f"Vous avez trouvé le nombre en {essais} essais.\n")
+
+
+def demander_si_rejouer():
+    """
+    Demande à l'utilisateur s'il souhaite rejouer après une partie.
+    """
+    while True:
+        reponse = input("Voulez-vous jouer à nouveau? (o/n): ").strip().lower()
+        if reponse in ('o', 'n'):
+            return reponse == 'o'
+        print("Réponse invalide. Veuillez entrer 'o' pour oui ou 'n' pour non.")
+
+
+def jeu_devinette():
+    """
+    Fonction principale pour lancer le jeu.
+    """
+    afficher_message_bienvenue()
+    jouer_partie()
+    
+    while demander_si_rejouer():
+        jouer_partie()
+    
+    print("Merci d'avoir joué")
+
+
+# Lancement du jeu
+if __name__ == "__main__":
+    jeu_devinette()
