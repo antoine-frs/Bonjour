@@ -6,7 +6,9 @@ def afficher_message_bienvenue() -> None:
     """
     Affiche un message de bienvenue et les règles du jeu.
     """
-    print("Essayez de deviner un nombre aléatoire entre 1 et 20 en un minimum d'essais.")
+    print(
+        "Essayez de deviner un nombre aléatoire entre 1 et 20 en un minimum d'essais."
+    )
     print("Bonne chance!\n")
 
 
@@ -23,7 +25,9 @@ def obtenir_deviner_utilisateur() -> int:
     """
     while True:
         try:
-            devinette: int = int(input("Entrez votre devinette (un nombre entre 1 et 20): "))
+            devinette: int = int(
+                input("Entrez votre devinette (un nombre entre 1 et 20): ")
+            )
             if 1 <= devinette <= 20:
                 return devinette
             else:
@@ -66,8 +70,8 @@ def demander_si_rejouer() -> bool:
     """
     while True:
         reponse: str = input("Voulez-vous jouer à nouveau? (o/n): ").strip().lower()
-        if reponse in ('o', 'n'):
-            return reponse == 'o'
+        if reponse in ("o", "n"):
+            return reponse == "o"
         print("Réponse invalide. Veuillez entrer 'o' pour oui ou 'n' pour non.")
 
 

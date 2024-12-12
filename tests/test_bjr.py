@@ -59,7 +59,9 @@ def test_donner_indice_correct(capfd: pytest.CaptureFixture) -> None:
 @patch("jeu_devinette.generer_nombre_aleatoire", return_value=15)
 @patch("jeu_devinette.donner_indice")
 def test_jouer_partie(
-    mock_donner_indice: MagicMock, mock_generer_nombre_aleatoire: MagicMock, mock_input: MagicMock
+    mock_donner_indice: MagicMock,
+    mock_generer_nombre_aleatoire: MagicMock,
+    mock_input: MagicMock,
 ) -> None:
     with patch("builtins.print") as mock_print:
         jouer_partie()
