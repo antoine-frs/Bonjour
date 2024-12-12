@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, _patch
+from unittest.mock import patch, MagicMock
 import random
 from bonjour.Projet import (
     afficher_message_bienvenue,
@@ -26,13 +26,13 @@ def test_generer_nombre_aleatoire() -> None:
 
 
 @patch("builtins.input", side_effect=["10"])
-def test_obtenir_deviner_utilisateur(mock_input: _patch) -> None:
+def test_obtenir_deviner_utilisateur(mock_input: MagicMock) -> None:
     devinette: int = obtenir_deviner_utilisateur()
     assert devinette == 10
 
 
 @patch("builtins.input", side_effect=["30", "abc", "15"])
-def test_obtenir_deviner_utilisateur_invalid_input(mock_input: _patch) -> None:
+def test_obtenir_deviner_utilisateur_invalid_input(mock_input: MagicMock) -> None:
     devinette: int = obtenir_deviner_utilisateur()
     assert devinette == 15
 
@@ -59,7 +59,7 @@ def test_donner_indice_correct(capfd: pytest.CaptureFixture) -> None:
 @patch("jeu_devinette.generer_nombre_aleatoire", return_value=15)
 @patch("jeu_devinette.donner_indice")
 def test_jouer_partie(
-    mock_donner_indice: _patch, mock_generer_nombre_aleatoire: _patch, mock_input: _patch
+    mock_donner_indice: MagicMock, mock_generer_nombre_aleatoire: MagicMock, mock_input: MagicMock
 ) -> None:
     with patch("builtins.print") as mock_print:
         jouer_partie()
@@ -68,14 +68,14 @@ def test_jouer_partie(
 
 
 @patch("builtins.input", side_effect=["o", "n"])
-def test_demander_si_rejouer_oui(mock_input: _patch) -> None:
+def test_demander_si_rejouer_oui(mock_input: MagicMock) -> None:
     assert demander_si_rejouer() is True
     assert demander_si_rejouer() is False
 
 
 @patch("builtins.input", side_effect=["o", "n"])
 @patch("jeu_devinette.jouer_partie")
-def test_jeu_devinette(mock_jouer_partie: _patch, mock_input: _patch) -> None:
+def test_jeu_devinette(mock_jouer_partie: MagicMock, mock_input: MagicMock) -> None:
     with patch("builtins.print") as mock_print:
         jeu_devinette()
         assert mock_jouer_partie.call_count == 2
