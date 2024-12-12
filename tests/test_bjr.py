@@ -55,14 +55,10 @@ def test_donner_indice_correct(capfd: pytest.CaptureFixture) -> None:
     assert "Félicitations!" in captured.out
 
 
-@patch("builtins.input", side_effect=["10", "20"])
+@patch("builtins.input", side_effect=["10", "15"])
 @patch("bonjour.Projet.generer_nombre_aleatoire", return_value=15)
 @patch("bonjour.Projet.donner_indice")
-def test_jouer_partie(
-    mock_donner_indice: MagicMock,
-    mock_generer_nombre_aleatoire: MagicMock,
-    mock_input: MagicMock,
-) -> None:
+def test_jouer_partie(mock_donner_indice, mock_generer_nombre_aleatoire, mock_input):
     with patch("builtins.print") as mock_print:
         jouer_partie()
         assert mock_donner_indice.call_count == 2
