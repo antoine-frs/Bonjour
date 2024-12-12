@@ -1,4 +1,5 @@
 import random
+from typing import Optional
 
 
 def afficher_message_bienvenue() -> None:
@@ -48,7 +49,7 @@ def jouer_partie() -> None:
     Exécute une partie du jeu, où l'utilisateur essaie de deviner le nombre.
     """
     nombre_cible: int = generer_nombre_aleatoire()
-    devinette: int = None
+    devinette: Optional[int] = None
     essais: int = 0
 
     while devinette != nombre_cible:
