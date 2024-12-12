@@ -3,9 +3,7 @@ requires-python = ">=3.11"
 name = "Bonjour"
 description = "Projet5A"
 authors = [
-    { name = 'Arnaud Somville', email = 'arnaud.somville@estaca.eu' },
-    {name = "Arnaud SOMVILLE", email = "arnaud.somville@estaca.eu"},
-    {name = "", email = ""},
+    { name = 'Antoine' },
 ]
 version = "0.1.0"
 dependencies = [
